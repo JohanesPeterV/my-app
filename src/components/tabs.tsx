@@ -36,14 +36,13 @@ const Tabs = ({ tabs = [], defaultTabIndex = 0 }: TabsProps) => {
                   ? "text-purple-600 border-b-2 border-purple-600"
                   : "text-gray-500 hover:text-gray-700"
               }`}
-            role="tab"
           >
             {tab.label}
           </button>
         ))}
       </div>
 
-      <div role="tabpanel" id={`panel-${activeTabIndex}`} className="mt-4">
+      <div id={`panel-${activeTabIndex}`} className="mt-4">
         {activeTab?.content}
       </div>
     </div>
