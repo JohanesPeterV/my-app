@@ -1,4 +1,4 @@
-A simple react components app created for a coding test
+A simple react components app created for a simple coding test
 
 ## Installation
 
