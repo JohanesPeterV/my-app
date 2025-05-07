@@ -1,3 +1,5 @@
+A simple react components app created for a coding test
+
 ## Installation
 
 ```bash
