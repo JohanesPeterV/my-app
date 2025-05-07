@@ -13,7 +13,7 @@ interface Props {
   data: User[];
 }
 
-const DataTable = ({ data }: Props) => {
+export default function DataTable({ data }: Props) {
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(5);
   const [search, setSearch] = useState("");
@@ -27,18 +27,14 @@ const DataTable = ({ data }: Props) => {
   const totalPages = Math.ceil(filtered.length / perPage);
   const paged = filtered.slice((page - 1) * perPage, page * perPage);
 
-  const handlePage = (next: number) => {
-    setPage(next);
-  };
-
   return (
-    <div className="w-full text-white">
-      <div className="flex justify-between items-center mb-4">
+    <div className="w-full text-white text-xs">
+      <div className="flex justify-between items-center mb-2 gap-2">
         <input
-          placeholder="Search name..."
+          placeholder="Search..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="bg-gray-700 border border-gray-600 px-3 py-2 rounded"
+          className="bg-gray-700 border border-gray-600 px-2 py-1 rounded w-full max-w-xs"
         />
 
         <select
@@ -47,7 +43,7 @@ const DataTable = ({ data }: Props) => {
             setPerPage(Number(e.target.value));
             setPage(1);
           }}
-          className="bg-gray-700 border border-gray-600 px-3 py-2 rounded"
+          className="bg-gray-700 border border-gray-600 px-2 py-1 rounded"
         >
           <option value={5}>5</option>
           <option value={10}>10</option>
@@ -56,13 +52,13 @@ const DataTable = ({ data }: Props) => {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-sm bg-gray-800 border border-gray-700 rounded">
-          <thead className="bg-gray-700 text-left">
+        <table className="w-full bg-gray-800 border border-gray-700 rounded text-xs">
+          <thead className="bg-gray-700">
             <tr>
-              <th className="px-4 py-2">ID</th>
-              <th className="px-4 py-2">Name</th>
-              <th className="px-4 py-2">Age</th>
-              <th className="px-4 py-2">Occupation</th>
+              <th className="px-2 py-1 text-left">ID</th>
+              <th className="px-2 py-1 text-left">Name</th>
+              <th className="px-2 py-1 text-left">Age</th>
+              <th className="px-2 py-1 text-left">Occupation</th>
             </tr>
           </thead>
           <tbody>
@@ -71,26 +67,26 @@ const DataTable = ({ data }: Props) => {
                 key={u.id}
                 className="hover:bg-gray-600 border-t border-gray-700"
               >
-                <td className="px-4 py-2">{u.id}</td>
-                <td className="px-4 py-2">{u.name}</td>
-                <td className="px-4 py-2">{u.age}</td>
-                <td className="px-4 py-2">{u.occupation}</td>
+                <td className="px-2 py-1">{u.id}</td>
+                <td className="px-2 py-1">{u.name}</td>
+                <td className="px-2 py-1">{u.age}</td>
+                <td className="px-2 py-1">{u.occupation}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      <div className="flex justify-between items-center mt-4 text-sm">
+      <div className="flex justify-between items-center mt-2">
         <span>
           Showing {Math.min((page - 1) * perPage + 1, filtered.length)} to{" "}
           {Math.min(page * perPage, filtered.length)} of {filtered.length}
         </span>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
           <button
-            onClick={() => handlePage(page - 1)}
+            onClick={() => setPage(page - 1)}
             disabled={page === 1}
-            className="px-3 py-1 bg-gray-700 rounded disabled:opacity-50"
+            className="px-2 py-1 bg-gray-700 rounded disabled:opacity-50"
           >
             Prev
           </button>
@@ -98,9 +94,9 @@ const DataTable = ({ data }: Props) => {
             Page {page} / {totalPages}
           </span>
           <button
-            onClick={() => handlePage(page + 1)}
+            onClick={() => setPage(page + 1)}
             disabled={page === totalPages}
-            className="px-3 py-1 bg-gray-700 rounded disabled:opacity-50"
+            className="px-2 py-1 bg-gray-700 rounded disabled:opacity-50"
           >
             Next
           </button>
@@ -108,5 +104,4 @@ const DataTable = ({ data }: Props) => {
       </div>
     </div>
   );
-};
-export default DataTable;
+}
