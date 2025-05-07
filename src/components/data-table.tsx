@@ -51,7 +51,7 @@ export default function DataTable({ data }: Props) {
         </select>
       </div>
 
-      <div className="overflow-x-auto">
+      <div>
         <table className="w-full bg-gray-800 border border-gray-700 rounded text-xs">
           <thead className="bg-gray-700">
             <tr>
